@@ -4,7 +4,6 @@ import {
   DarkModeOutlined,
   LightModeOutlined,
   Menu as MenuIcon,
-  Search,
 } from "@mui/icons-material";
 import FlexBetween from "../components/FlexBetween";
 import {useDispatch} from "react-redux";
@@ -14,7 +13,6 @@ import {
   Box,
   Button,
   IconButton,
-  InputBase,
   Menu,
   MenuItem,
   Toolbar,
@@ -44,17 +42,17 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
             <MenuIcon />
           </IconButton>
-          <FlexBetween
-            backgroundColor={theme.palette.background.alt}
-            borderRadius="9px"
-            gap="3rem"
-            p="0.1rem 1.5rem"
-          >
-            <InputBase placeholder="Search..." />
-            <IconButton>
-              <Search />
-            </IconButton>
-          </FlexBetween>
+          {/*<FlexBetween*/}
+          {/*  backgroundColor={theme.palette.background.alt}*/}
+          {/*  borderRadius="9px"*/}
+          {/*  gap="3rem"*/}
+          {/*  p="0.1rem 1.5rem"*/}
+          {/*>*/}
+          {/*  <InputBase placeholder="Search..." />*/}
+          {/*  <IconButton>*/}
+          {/*    <Search />*/}
+          {/*  </IconButton>*/}
+          {/*</FlexBetween>*/}
         </FlexBetween>
 
         {/* RIGHT SIDE */}
