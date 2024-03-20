@@ -47,6 +47,7 @@ export const getXmlModel = /* GraphQL */ `
         url
         __typename
       }
+      urlCount
       createdAt
       updatedAt
       __typename
@@ -68,6 +69,7 @@ export const listXmlModels = /* GraphQL */ `
         subtag
         fileName
         context
+        urlCount
         createdAt
         updatedAt
         __typename

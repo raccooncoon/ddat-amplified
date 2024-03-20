@@ -56,6 +56,7 @@ export const onCreateXmlModel = /* GraphQL */ `
         url
         __typename
       }
+      urlCount
       createdAt
       updatedAt
       __typename
@@ -78,6 +79,7 @@ export const onUpdateXmlModel = /* GraphQL */ `
         url
         __typename
       }
+      urlCount
       createdAt
       updatedAt
       __typename
@@ -100,6 +102,7 @@ export const onDeleteXmlModel = /* GraphQL */ `
         url
         __typename
       }
+      urlCount
       createdAt
       updatedAt
       __typename

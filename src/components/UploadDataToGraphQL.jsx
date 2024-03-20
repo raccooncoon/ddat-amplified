@@ -44,6 +44,7 @@ function UploadDataToGraphQL() {
             subtag: data.subtag,
             fileName: data.fileName,
             context: data.context,
+            urlCount: data.urlCount,
             MethodModels: data.methodModels
           },
         },

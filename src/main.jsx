@@ -9,6 +9,7 @@ import {setupListeners} from "@reduxjs/toolkit/query";
 
 import {Amplify} from 'aws-amplify';
 import amplifyconfig from './amplifyconfiguration.json';
+// import {api} from "./state/api.js";
 
 Amplify.configure(amplifyconfig);
 
