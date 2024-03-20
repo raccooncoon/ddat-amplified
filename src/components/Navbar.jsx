@@ -1,25 +1,24 @@
-import { useState } from "react";
+import {useState} from "react";
 import {
-  LightModeOutlined,
+  ArrowDropDownOutlined,
   DarkModeOutlined,
+  LightModeOutlined,
   Menu as MenuIcon,
   Search,
-  SettingsOutlined,
-  ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import FlexBetween from "../components/FlexBetween";
-import { useDispatch } from "react-redux";
-import { setMode } from "../state";
+import {useDispatch} from "react-redux";
+import {setMode} from "../state";
 import {
   AppBar,
-  Button,
   Box,
-  Typography,
+  Button,
   IconButton,
   InputBase,
-  Toolbar,
   Menu,
   MenuItem,
+  Toolbar,
+  Typography,
   useTheme,
 } from "@mui/material";
 
@@ -67,9 +66,9 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               <LightModeOutlined sx={{ fontSize: "25px" }} />
             )}
           </IconButton>
-          <IconButton>
-            <SettingsOutlined sx={{ fontSize: "25px" }} />
-          </IconButton>
+          {/*<IconButton>*/}
+          {/*  <SettingsOutlined sx={{ fontSize: "25px" }} />*/}
+          {/*</IconButton>*/}
 
           <FlexBetween>
             <Button
