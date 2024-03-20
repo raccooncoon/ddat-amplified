@@ -4,8 +4,6 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as DropdownListCreateForm } from "./DropdownListCreateForm";
-export { default as DropdownListUpdateForm } from "./DropdownListUpdateForm";
 export { default as XmlModelCreateForm } from "./XmlModelCreateForm";
 export { default as XmlModelUpdateForm } from "./XmlModelUpdateForm";
 export { default as studioTheme } from "./studioTheme";

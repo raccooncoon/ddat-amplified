@@ -1,48 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createDropdownList = /* GraphQL */ `
-  mutation CreateDropdownList(
-    $input: CreateDropdownListInput!
-    $condition: ModelDropdownListConditionInput
-  ) {
-    createDropdownList(input: $input, condition: $condition) {
-      id
-      tableNames
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateDropdownList = /* GraphQL */ `
-  mutation UpdateDropdownList(
-    $input: UpdateDropdownListInput!
-    $condition: ModelDropdownListConditionInput
-  ) {
-    updateDropdownList(input: $input, condition: $condition) {
-      id
-      tableNames
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteDropdownList = /* GraphQL */ `
-  mutation DeleteDropdownList(
-    $input: DeleteDropdownListInput!
-    $condition: ModelDropdownListConditionInput
-  ) {
-    deleteDropdownList(input: $input, condition: $condition) {
-      id
-      tableNames
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
 export const createXmlModel = /* GraphQL */ `
   mutation CreateXmlModel(
     $input: CreateXmlModelInput!
