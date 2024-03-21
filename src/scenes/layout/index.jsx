@@ -6,7 +6,8 @@ import Sidebar from "../../components/Sidebar.jsx";
 
 const Layout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  console.log("isNonMobile =>> ", isNonMobile);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(isNonMobile);
 
   const data = {
     name: "치타",

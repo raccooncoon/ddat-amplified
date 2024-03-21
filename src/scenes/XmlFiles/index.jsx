@@ -1,14 +1,15 @@
-import {Box, useTheme} from "@mui/material";
+import {Box, useMediaQuery, useTheme} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid";
 import Header from "../../components/Header.jsx";
 import {useEffect, useState} from "react";
 import DataGridCustomToolbar from "../../components/DataGridCustomToolbar.jsx";
 import {generateClient} from "aws-amplify/api";
-import {listXmlModels} from "../../graphql/queries.js";
+import {getXmlModel, listXmlModels} from "../../graphql/queries.js";
 
 const XmlFiles = () => {
   const client = generateClient(); // AWS Amplify API 클라이언트를 생성합니다.
   const theme = useTheme();
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
 
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(20);
@@ -16,13 +17,22 @@ const XmlFiles = () => {
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState({});
+  const [selectedData, setSelectedData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  // const { data : sampleData } = useDemoData({
+  //   dataSet: 'Commodity',
+  //   rowLength: 20,
+  //   maxColumns: 5,
+  // });
+  //
+  // console.table(sampleData);
+
   useEffect(() => {
-    fetchXmlFiles().then(() => setIsLoading(false));
+    getXmlFiles().then(() => setIsLoading(false));
   }, [pageSize]);
 
-  const fetchXmlFiles = async () => {
+  const getXmlFiles = async () => {
     try {
       const response = await client.graphql({
         query: listXmlModels,
@@ -37,51 +47,93 @@ const XmlFiles = () => {
     }
   }
 
+  const getXmlFile = async (id) => {
+    try {
+      const response = await client.graphql({
+        query: getXmlModel,
+        variables: {
+          id: id
+        },
+      });
+      setSelectedData(response.data);
+      console.log("items =>> ", response.data.getXmlModel);
+    } catch (error) {
+      console.error('Error fetching xml files:', error);
+    }
+  }
+
+  const getCrud = (crud) => {
+    switch (crud) {
+      case "insert":
+        return <strong>C</strong>;
+      case "select":
+        return <strong>R</strong>
+      case "update":
+        return <strong>U</strong>;
+      case "delete":
+        return <strong>D</strong>;
+      default:
+        return "";
+    }
+  }
+
   const columns = [
     {
-      field: "moduleName",
-      headerName: "서비스명",
-      flex: 1,
+      field: "id",
+      headerName: "ID",
+      width: 300,
+      hide: true,
     },
     {
       field: "subtag",
       headerName: "CRUD",
-      flex: 1,
+      width: 70,
+      renderCell: (params) => getCrud(params.value)
+    },
+    {
+      field: "moduleName",
+      headerName: "SERVICES",
+      width: 100,
+      hide: !isNonMobile,
     },
     {
       field: "namespace",
-      headerName: "네임스페이스",
+      headerName: "NAME SPACE",
       flex: 2,
+      hide: !isNonMobile,
     },
     {
       field: "fileName",
-      headerName: "파일네임",
+      headerName: "FILE NAME",
       flex: 1,
+      hide: !isNonMobile,
     },
     {
       field: "xmlid",
-      headerName: "실행 함수명",
+      headerName: "Mapper ID",
       flex: 1,
     },
     {
       field: "context",
-      headerName: "CONTEXT",
-      flex: 4,
-    },
-    {
-      field: "context1",
-      headerName: "자세히 보기",
-      flex: 1,
-    },
-    {
-      field: "context2",
-      headerName: "호출 함수명",
-      flex: 1,
+      headerName: "XML MAPPER CONTEXT",
+      flex: 3,
+      hide: !isNonMobile,
     },
     {
       field: "urlCount",
-      headerName: "최초 호출건",
-      flex: 0.5,
+      headerName: "URL COUNT",
+      flex: 1,
+    },
+    {
+      field: "idtest",
+      headerName: "CALLER",
+      flex: 1,
+      hide: true,
+      renderCell: (params) => {
+        return (
+            <strong>{params.value}</strong>
+        );
+      }
     },
   ];
 
@@ -120,7 +172,7 @@ const XmlFiles = () => {
               getRowId={(row) => row.id}
               rows={(data && data?.listXmlModels?.items) || []}
               columns={columns}
-              //rowCount={(data && data.total) || 0}
+              rowCount={(data && data.total) || 0}
               rowsPerPageOptions={[20, 50, 100]}
               pagination
               page={page}
@@ -130,6 +182,11 @@ const XmlFiles = () => {
               onPageChange={(newPage) => setPage(newPage)}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               onSortModelChange={(newSortModel) => setSort(...newSortModel)}
+              checkboxSelection={false}
+              onRowClick={(params) => {
+                console.log(params.row);
+                getXmlFile(params.row.id).then(r => console.log(r));
+              }}
               components={{Toolbar: DataGridCustomToolbar}}
               componentsProps={{
                 toolbar: {searchInput, setSearchInput, setSearch},
