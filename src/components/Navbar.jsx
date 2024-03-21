@@ -19,6 +19,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import {signOut} from 'aws-amplify/auth';
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
@@ -113,7 +114,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={signOut}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
         </FlexBetween>

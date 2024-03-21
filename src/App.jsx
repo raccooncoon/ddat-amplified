@@ -15,11 +15,11 @@ function App() {
       <div className="app">
         <BrowserRouter>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
+            <CssBaseline/>
             <Routes>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Navigate to="/xmlFiles" replace />} />
-                <Route path="/xmlFiles" element={<XmlFiles />} />
+              <Route element={<Layout/>}>
+                <Route path="/" element={<Navigate to="/xmlFiles" replace />}/>
+                <Route path="/xmlFiles" element={<XmlFiles/>}/>
               </Route>
             </Routes>
           </ThemeProvider>
