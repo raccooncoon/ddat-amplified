@@ -31,7 +31,7 @@ const XmlFiles = () => {
 
   useEffect(() => {
     getXmlFiles().then(() => setIsLoading(false));
-  }, [pageSize,search]);
+  }, [pageSize, search]);
 
   const getXmlFiles = async () => {
     try {
@@ -174,7 +174,7 @@ const XmlFiles = () => {
               rows={(data && data?.listXmlModels?.items) || []}
               columns={columns}
               rowCount={(data && data?.listXmlModels?.items.length) || 0}
-              rowsPerPageOptions={[20, 50, 100, 500]}
+              rowsPerPageOptions={[20, 50, 100]}
               pagination
               page={page}
               pageSize={pageSize}
