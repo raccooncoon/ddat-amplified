@@ -5,6 +5,7 @@ import {themeSettings} from "./theme.js";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Layout from "./scenes/layout/index.jsx";
 import XmlFiles from "./scenes/XmlFiles/index.jsx";
+import {withAuthenticator} from '@aws-amplify/ui-react';
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -26,4 +27,4 @@ function App() {
   )
 }
 
-export default App
+export default withAuthenticator(App)

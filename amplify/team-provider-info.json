@@ -10,6 +10,11 @@
       "StackName": "amplify-ddatamplified-dev-130840",
       "StackId": "arn:aws:cloudformation:ap-northeast-2:851725584464:stack/amplify-ddatamplified-dev-130840/0ef23b40-d5ef-11ee-a6fb-02e011cf961c",
       "AmplifyAppId": "duw0jlyeruvni"
+    },
+    "categories": {
+      "auth": {
+        "ddatamplified": {}
+      }
     }
   }
 }

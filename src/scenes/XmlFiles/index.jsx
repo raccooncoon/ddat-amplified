@@ -19,6 +19,7 @@ const XmlFiles = () => {
   const [data, setData] = useState({});
   const [selectedData, setSelectedData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [filter, setFilter] = useState({});
 
   // const { data : sampleData } = useDemoData({
   //   dataSet: 'Commodity',
@@ -30,14 +31,19 @@ const XmlFiles = () => {
 
   useEffect(() => {
     getXmlFiles().then(() => setIsLoading(false));
-  }, [pageSize]);
+  }, [pageSize,search]);
 
   const getXmlFiles = async () => {
     try {
       const response = await client.graphql({
         query: listXmlModels,
         variables: {
-          limit: pageSize
+          limit: pageSize,
+          filter: {
+            context: {
+              contains: search
+            }
+          }
         },
       });
       setData(response.data);
@@ -62,79 +68,66 @@ const XmlFiles = () => {
     }
   }
 
-  const getCrud = (crud) => {
-    switch (crud) {
-      case "insert":
-        return <strong>C</strong>;
-      case "select":
-        return <strong>R</strong>
-      case "update":
-        return <strong>U</strong>;
-      case "delete":
-        return <strong>D</strong>;
-      default:
-        return "";
-    }
-  }
-
   const columns = [
     {
-      field: "id",
       headerName: "ID",
+      field: "id",
       width: 300,
       hide: true,
+      align: "center",
+      headerAlign: "center",
     },
     {
-      field: "subtag",
       headerName: "CRUD",
-      width: 70,
-      renderCell: (params) => getCrud(params.value)
+      field: "subtag",
+      flex: 1,
+      align: "center",
+      headerAlign: "center",
     },
     {
-      field: "moduleName",
       headerName: "SERVICES",
-      width: 100,
+      field: "moduleName",
+      flex: 1,
+      align: "center",
+      headerAlign: "center",
       hide: !isNonMobile,
     },
     {
-      field: "namespace",
       headerName: "NAME SPACE",
+      field: "namespace",
       flex: 2,
       hide: !isNonMobile,
+      headerAlign: "center",
     },
     {
-      field: "fileName",
       headerName: "FILE NAME",
+      field: "fileName",
       flex: 1,
-      hide: !isNonMobile,
+      hide: true,
+      align: "center",
+      headerAlign: "center",
     },
     {
-      field: "xmlid",
       headerName: "Mapper ID",
+      field: "xmlid",
       flex: 1,
+      headerAlign: "center",
     },
     {
       field: "context",
       headerName: "XML MAPPER CONTEXT",
-      flex: 3,
+      flex: 4,
       hide: !isNonMobile,
+      headerAlign: "center",
+      sortable: false,
     },
     {
-      field: "urlCount",
       headerName: "URL COUNT",
+      field: "urlCount",
+      align: "center",
+      headerAlign: "center",
       flex: 1,
-    },
-    {
-      field: "idtest",
-      headerName: "CALLER",
-      flex: 1,
-      hide: true,
-      renderCell: (params) => {
-        return (
-            <strong>{params.value}</strong>
-        );
-      }
-    },
+    }
   ];
 
   return (
@@ -172,19 +165,23 @@ const XmlFiles = () => {
               getRowId={(row) => row.id}
               rows={(data && data?.listXmlModels?.items) || []}
               columns={columns}
-              rowCount={(data && data.total) || 0}
-              rowsPerPageOptions={[20, 50, 100]}
+              rowCount={(data && data?.listXmlModels?.items.length) || 0}
+              rowsPerPageOptions={[20, 50, 100, 500]}
               pagination
               page={page}
               pageSize={pageSize}
               paginationMode="server"
-              sortingMode="server"
+              sortingMode="client"
+              filterMode="client"
+              onFilterModelChange={(newModel) => {
+                setFilter(newModel);
+                console.log(newModel);
+              }}
               onPageChange={(newPage) => setPage(newPage)}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-              onSortModelChange={(newSortModel) => setSort(...newSortModel)}
-              checkboxSelection={false}
+              checkboxSelection={true}
               onRowClick={(params) => {
-                console.log(params.row);
+                console.log("params =>> ", params);
                 getXmlFile(params.row.id).then(r => console.log(r));
               }}
               components={{Toolbar: DataGridCustomToolbar}}
