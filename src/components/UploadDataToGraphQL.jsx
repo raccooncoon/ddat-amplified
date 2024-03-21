@@ -29,8 +29,11 @@ function UploadDataToGraphQL() {
             let end = parseInt(prompt('마지막숫자를 입력하세요', content.length));
             content.slice(start, end).forEach(data => {
                 // content.forEach(data => {
-                sendToGraphQL(data);
+                setTimeout(() => {
+                    sendToGraphQL(data);
+                }, 1000);
             });
+            setLoading(false);
         };
         // 파일을 텍스트로 읽기
         reader.readAsText(file);
@@ -58,11 +61,6 @@ function UploadDataToGraphQL() {
         } catch (error) {
             console.error('Error sending query to GraphQL:', error);
             // 오류 발생 시 처리하는 로직을 추가할 수 있습니다.
-        } finally {
-            console.log('finally')
-            setLoading(false); // 요청이 완료되면 로딩 상태를 false로 설정합니다.
-            // 화면 리프레쉬 추가
-            window.location.reload();
         }
     };
 

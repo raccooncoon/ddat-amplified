@@ -29,7 +29,6 @@ export declare type XmlModelUpdateFormInputValues = {
     fileName?: string;
     context?: string;
     urlCount?: number;
-    owner?: string;
 };
 export declare type XmlModelUpdateFormValidationValues = {
     moduleName?: ValidationFunction<string>;
@@ -39,7 +38,6 @@ export declare type XmlModelUpdateFormValidationValues = {
     fileName?: ValidationFunction<string>;
     context?: ValidationFunction<string>;
     urlCount?: ValidationFunction<number>;
-    owner?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type XmlModelUpdateFormOverridesProps = {
@@ -51,7 +49,6 @@ export declare type XmlModelUpdateFormOverridesProps = {
     fileName?: PrimitiveOverrideProps<TextFieldProps>;
     context?: PrimitiveOverrideProps<TextFieldProps>;
     urlCount?: PrimitiveOverrideProps<TextFieldProps>;
-    owner?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type XmlModelUpdateFormProps = React.PropsWithChildren<{
     overrides?: XmlModelUpdateFormOverridesProps | undefined | null;

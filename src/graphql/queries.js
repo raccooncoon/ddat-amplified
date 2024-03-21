@@ -18,7 +18,6 @@ export const getXmlModel = /* GraphQL */ `
         __typename
       }
       urlCount
-      owner
       createdAt
       updatedAt
       __typename
@@ -41,7 +40,6 @@ export const listXmlModels = /* GraphQL */ `
         fileName
         context
         urlCount
-        owner
         createdAt
         updatedAt
         __typename

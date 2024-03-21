@@ -10,6 +10,7 @@ const UseCurrentAuthenticatedUser = () => {
       try {
         const userData = await getCurrentUser();
         setUser({
+          userId: userData.userId,
           userName: userData?.signInDetails?.loginId.split("@")[0],
           email: userData?.signInDetails?.loginId,
           url: `https://www.gravatar.com/avatar/${md5(

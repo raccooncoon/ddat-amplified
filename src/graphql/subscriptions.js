@@ -2,11 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateXmlModel = /* GraphQL */ `
-  subscription OnCreateXmlModel(
-    $filter: ModelSubscriptionXmlModelFilterInput
-    $owner: String
-  ) {
-    onCreateXmlModel(filter: $filter, owner: $owner) {
+  subscription OnCreateXmlModel($filter: ModelSubscriptionXmlModelFilterInput) {
+    onCreateXmlModel(filter: $filter) {
       id
       moduleName
       xmlid
@@ -21,7 +18,6 @@ export const onCreateXmlModel = /* GraphQL */ `
         __typename
       }
       urlCount
-      owner
       createdAt
       updatedAt
       __typename
@@ -29,11 +25,8 @@ export const onCreateXmlModel = /* GraphQL */ `
   }
 `;
 export const onUpdateXmlModel = /* GraphQL */ `
-  subscription OnUpdateXmlModel(
-    $filter: ModelSubscriptionXmlModelFilterInput
-    $owner: String
-  ) {
-    onUpdateXmlModel(filter: $filter, owner: $owner) {
+  subscription OnUpdateXmlModel($filter: ModelSubscriptionXmlModelFilterInput) {
+    onUpdateXmlModel(filter: $filter) {
       id
       moduleName
       xmlid
@@ -48,7 +41,6 @@ export const onUpdateXmlModel = /* GraphQL */ `
         __typename
       }
       urlCount
-      owner
       createdAt
       updatedAt
       __typename
@@ -56,11 +48,8 @@ export const onUpdateXmlModel = /* GraphQL */ `
   }
 `;
 export const onDeleteXmlModel = /* GraphQL */ `
-  subscription OnDeleteXmlModel(
-    $filter: ModelSubscriptionXmlModelFilterInput
-    $owner: String
-  ) {
-    onDeleteXmlModel(filter: $filter, owner: $owner) {
+  subscription OnDeleteXmlModel($filter: ModelSubscriptionXmlModelFilterInput) {
+    onDeleteXmlModel(filter: $filter) {
       id
       moduleName
       xmlid
@@ -75,7 +64,6 @@ export const onDeleteXmlModel = /* GraphQL */ `
         __typename
       }
       urlCount
-      owner
       createdAt
       updatedAt
       __typename

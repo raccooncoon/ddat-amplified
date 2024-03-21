@@ -30,7 +30,6 @@ export default function XmlModelCreateForm(props) {
     fileName: "",
     context: "",
     urlCount: "",
-    owner: "",
   };
   const [moduleName, setModuleName] = React.useState(initialValues.moduleName);
   const [xmlid, setXmlid] = React.useState(initialValues.xmlid);
@@ -39,7 +38,6 @@ export default function XmlModelCreateForm(props) {
   const [fileName, setFileName] = React.useState(initialValues.fileName);
   const [context, setContext] = React.useState(initialValues.context);
   const [urlCount, setUrlCount] = React.useState(initialValues.urlCount);
-  const [owner, setOwner] = React.useState(initialValues.owner);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setModuleName(initialValues.moduleName);
@@ -49,7 +47,6 @@ export default function XmlModelCreateForm(props) {
     setFileName(initialValues.fileName);
     setContext(initialValues.context);
     setUrlCount(initialValues.urlCount);
-    setOwner(initialValues.owner);
     setErrors({});
   };
   const validations = {
@@ -60,7 +57,6 @@ export default function XmlModelCreateForm(props) {
     fileName: [],
     context: [],
     urlCount: [],
-    owner: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -95,7 +91,6 @@ export default function XmlModelCreateForm(props) {
           fileName,
           context,
           urlCount,
-          owner,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -165,7 +160,6 @@ export default function XmlModelCreateForm(props) {
               fileName,
               context,
               urlCount,
-              owner,
             };
             const result = onChange(modelFields);
             value = result?.moduleName ?? value;
@@ -196,7 +190,6 @@ export default function XmlModelCreateForm(props) {
               fileName,
               context,
               urlCount,
-              owner,
             };
             const result = onChange(modelFields);
             value = result?.xmlid ?? value;
@@ -227,7 +220,6 @@ export default function XmlModelCreateForm(props) {
               fileName,
               context,
               urlCount,
-              owner,
             };
             const result = onChange(modelFields);
             value = result?.namespace ?? value;
@@ -258,7 +250,6 @@ export default function XmlModelCreateForm(props) {
               fileName,
               context,
               urlCount,
-              owner,
             };
             const result = onChange(modelFields);
             value = result?.subtag ?? value;
@@ -289,7 +280,6 @@ export default function XmlModelCreateForm(props) {
               fileName: value,
               context,
               urlCount,
-              owner,
             };
             const result = onChange(modelFields);
             value = result?.fileName ?? value;
@@ -320,7 +310,6 @@ export default function XmlModelCreateForm(props) {
               fileName,
               context: value,
               urlCount,
-              owner,
             };
             const result = onChange(modelFields);
             value = result?.context ?? value;
@@ -355,7 +344,6 @@ export default function XmlModelCreateForm(props) {
               fileName,
               context,
               urlCount: value,
-              owner,
             };
             const result = onChange(modelFields);
             value = result?.urlCount ?? value;
@@ -369,37 +357,6 @@ export default function XmlModelCreateForm(props) {
         errorMessage={errors.urlCount?.errorMessage}
         hasError={errors.urlCount?.hasError}
         {...getOverrideProps(overrides, "urlCount")}
-      ></TextField>
-      <TextField
-        label="Owner"
-        isRequired={false}
-        isReadOnly={false}
-        value={owner}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              moduleName,
-              xmlid,
-              namespace,
-              subtag,
-              fileName,
-              context,
-              urlCount,
-              owner: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.owner ?? value;
-          }
-          if (errors.owner?.hasError) {
-            runValidationTasks("owner", value);
-          }
-          setOwner(value);
-        }}
-        onBlur={() => runValidationTasks("owner", owner)}
-        errorMessage={errors.owner?.errorMessage}
-        hasError={errors.owner?.hasError}
-        {...getOverrideProps(overrides, "owner")}
       ></TextField>
       <Flex
         justifyContent="space-between"

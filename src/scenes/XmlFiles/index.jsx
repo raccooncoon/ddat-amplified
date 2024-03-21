@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import DataGridCustomToolbar from "../../components/DataGridCustomToolbar.jsx";
 import {generateClient} from "aws-amplify/api";
 import {getXmlModel, listXmlModels} from "../../graphql/queries.js";
+import UseCurrentAuthenticatedUser from "../../hooks/useCurrentAuthenticatedUser.jsx";
 
 const XmlFiles = () => {
     const client = generateClient(); // AWS Amplify API 클라이언트를 생성합니다.
@@ -38,7 +39,6 @@ const XmlFiles = () => {
             const response = await client.graphql({
                 query: listXmlModels,
                 variables: {
-                    limit: pageSize,
                     filter: {
                         context: {
                             contains: search

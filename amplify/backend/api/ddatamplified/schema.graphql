@@ -4,7 +4,7 @@ type MethodModel {
   url: String
 }
 
-type XmlModel @model @auth(rules: [{ allow: public, operations: [read] }, { allow: owner }]) {
+type XmlModel @model @auth(rules: [{allow: private}]) {
   id: ID!
   moduleName: String
   xmlid: String
@@ -14,5 +14,5 @@ type XmlModel @model @auth(rules: [{ allow: public, operations: [read] }, { allo
   context: String
   MethodModels: [MethodModel]
   urlCount: Int
-  owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])
 }
+ 
