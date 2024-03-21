@@ -23,6 +23,7 @@ export const createXmlModel = /* GraphQL */ `
       urlCount
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -49,6 +50,7 @@ export const updateXmlModel = /* GraphQL */ `
       urlCount
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -75,6 +77,7 @@ export const deleteXmlModel = /* GraphQL */ `
       urlCount
       createdAt
       updatedAt
+      owner
       __typename
     }
   }

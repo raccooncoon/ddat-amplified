@@ -2,8 +2,11 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateXmlModel = /* GraphQL */ `
-  subscription OnCreateXmlModel($filter: ModelSubscriptionXmlModelFilterInput) {
-    onCreateXmlModel(filter: $filter) {
+  subscription OnCreateXmlModel(
+    $filter: ModelSubscriptionXmlModelFilterInput
+    $owner: String
+  ) {
+    onCreateXmlModel(filter: $filter, owner: $owner) {
       id
       moduleName
       xmlid
@@ -20,13 +23,17 @@ export const onCreateXmlModel = /* GraphQL */ `
       urlCount
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateXmlModel = /* GraphQL */ `
-  subscription OnUpdateXmlModel($filter: ModelSubscriptionXmlModelFilterInput) {
-    onUpdateXmlModel(filter: $filter) {
+  subscription OnUpdateXmlModel(
+    $filter: ModelSubscriptionXmlModelFilterInput
+    $owner: String
+  ) {
+    onUpdateXmlModel(filter: $filter, owner: $owner) {
       id
       moduleName
       xmlid
@@ -43,13 +50,17 @@ export const onUpdateXmlModel = /* GraphQL */ `
       urlCount
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteXmlModel = /* GraphQL */ `
-  subscription OnDeleteXmlModel($filter: ModelSubscriptionXmlModelFilterInput) {
-    onDeleteXmlModel(filter: $filter) {
+  subscription OnDeleteXmlModel(
+    $filter: ModelSubscriptionXmlModelFilterInput
+    $owner: String
+  ) {
+    onDeleteXmlModel(filter: $filter, owner: $owner) {
       id
       moduleName
       xmlid
@@ -66,6 +77,7 @@ export const onDeleteXmlModel = /* GraphQL */ `
       urlCount
       createdAt
       updatedAt
+      owner
       __typename
     }
   }

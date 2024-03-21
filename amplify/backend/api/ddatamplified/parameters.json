@@ -1,5 +1,11 @@
 {
   "AppSyncApiName": "ddatamplified",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authddatamplified",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

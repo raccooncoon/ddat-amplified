@@ -20,6 +20,7 @@ export const getXmlModel = /* GraphQL */ `
       urlCount
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -42,6 +43,7 @@ export const listXmlModels = /* GraphQL */ `
         urlCount
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
