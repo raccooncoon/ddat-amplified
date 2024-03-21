@@ -4,8 +4,6 @@ import Header from "../../components/Header.jsx";
 import {useEffect, useState} from "react";
 import DataGridCustomToolbar from "../../components/DataGridCustomToolbar.jsx";
 import {generateClient} from "aws-amplify/api";
-import {getXmlModel, listXmlModels} from "../../graphql/queries.js";
-import UseCurrentAuthenticatedUser from "../../hooks/useCurrentAuthenticatedUser.jsx";
 
 const XmlFiles = () => {
     const client = generateClient(); // AWS Amplify API 클라이언트를 생성합니다.
@@ -22,35 +20,26 @@ const XmlFiles = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [filter, setFilter] = useState({});
 
-    // const { data : sampleData } = useDemoData({
-    //   dataSet: 'Commodity',
-    //   rowLength: 20,
-    //   maxColumns: 5,
-    // });
-    //
-    // console.table(sampleData);
-
     useEffect(() => {
-        getXmlFiles().then(() => setIsLoading(false));
-    }, [pageSize, search]);
+        getXmlFiles().then(r => setIsLoading(false));
+    }, []);
 
     const getXmlFiles = async () => {
-        try {
-            const response = await client.graphql({
-                query: listXmlModels,
-                variables: {
-                    filter: {
-                        context: {
-                            contains: search
-                        }
-                    }
-                },
-            });
-            setData(response.data);
-            console.log("items =>> ", response.data.listXmlModels.items);
-        } catch (error) {
-            console.error('Error fetching xml files:', error);
-        }
+        // try {
+        //     const response = await client.graphql({
+        //         query: listXmlModelsCustom,
+        //         variables: {
+        //             limit: 1000,
+        //         },
+        //     });
+        //     // setData(response.data);
+        //     console.log("listXmlModels =>> ", response.data.listXmlModels);
+        //     console.log("nextToken =>> ", response.data.listXmlModels.nextToken);
+        //     setData(response.data.listXmlModels);
+        //
+        // } catch (error) {
+        //     console.error('Error fetching xml files:', error);
+        // }
     }
 
     const getXmlFile = async (id) => {
@@ -117,7 +106,7 @@ const XmlFiles = () => {
             field: "context",
             headerName: "XML MAPPER CONTEXT",
             flex: 5,
-            hide: !isNonMobile,
+            hide: true,
             headerAlign: "center",
             sortable: false,
         },
@@ -127,15 +116,7 @@ const XmlFiles = () => {
             align: "center",
             headerAlign: "center",
             flex: 1,
-        },
-        {
-            field: "createdAt",
-            headerName: "CREATED AT",
-            align: "center",
-            headerAlign: "center",
-            hide: true,
-            flex: 2,
-        },
+        }
     ];
 
     return (
@@ -176,15 +157,16 @@ const XmlFiles = () => {
                     rowCount={(data && data?.listXmlModels?.items.length) || 0}
                     rowsPerPageOptions={[20, 50, 100]}
                     pagination
-                    page={page}
-                    pageSize={pageSize}
-                    paginationMode="server"
+                    autoPageSize
+                    // page={page}
+                    // pageSize={pageSize}
+                    paginationMode="client"
                     sortingMode="client"
                     filterMode="client"
-                    onFilterModelChange={(newModel) => {
-                        setFilter(newModel);
-                        console.log(newModel);
-                    }}
+                    // onFilterModelChange={(newModel) => {
+                    //     setFilter(newModel);
+                    //     console.log(newModel);
+                    // }}
                     onPageChange={(newPage) => setPage(newPage)}
                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                     checkboxSelection={isNonMobile}

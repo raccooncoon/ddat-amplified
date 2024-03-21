@@ -4,7 +4,6 @@ import {CloudUploadOutlined} from "@mui/icons-material";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {generateClient} from 'aws-amplify/api';
 import {useState} from "react";
-import {createXmlModel} from "../graphql/mutations.js";
 
 function UploadDataToGraphQL() {
     const theme = useTheme();
@@ -41,27 +40,27 @@ function UploadDataToGraphQL() {
 
     const sendToGraphQL = async (data) => {
         // console.table(data)
-        try {
-            const response = await client.graphql({
-                query: createXmlModel, variables: {
-                    input: {
-                        moduleName: data.moduleName,
-                        xmlid: data.xmlid,
-                        namespace: data.namespace,
-                        subtag: data.subtag,
-                        fileName: data.fileName,
-                        context: data.context,
-                        urlCount: data.urlCount,
-                        MethodModels: data.methodModels
-                    },
-                },
-            })
-            console.log('GraphQL response:', response);
-            // 그래프큐엘 서버로부터 받은 응답을 처리하는 로직을 추가할 수 있습니다.
-        } catch (error) {
-            console.error('Error sending query to GraphQL:', error);
-            // 오류 발생 시 처리하는 로직을 추가할 수 있습니다.
-        }
+        // try {
+        //     const response = await client.graphql({
+        //         query: createXmlModel, variables: {
+        //             input: {
+        //                 moduleName: data.moduleName,
+        //                 xmlid: data.xmlid,
+        //                 namespace: data.namespace,
+        //                 subtag: data.subtag,
+        //                 fileName: data.fileName,
+        //                 context: data.context,
+        //                 urlCount: data.urlCount,
+        //                 MethodModels: data.methodModels
+        //             },
+        //         },
+        //     })
+        //     console.log('GraphQL response:', response);
+        //     // 그래프큐엘 서버로부터 받은 응답을 처리하는 로직을 추가할 수 있습니다.
+        // } catch (error) {
+        //     console.error('Error sending query to GraphQL:', error);
+        //     // 오류 발생 시 처리하는 로직을 추가할 수 있습니다.
+        // }
     };
 
     const VisuallyHiddenInput = styled('input')({
@@ -83,6 +82,7 @@ function UploadDataToGraphQL() {
                        variant="contained"
                        tabIndex={-1}
                        startIcon={<CloudUploadOutlined/>}
+                       disabled
                        sx={{
                            backgroundColor: theme.palette.secondary.light,
                            color: theme.palette.background.alt,
