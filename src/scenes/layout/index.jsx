@@ -3,6 +3,7 @@ import {Box, useMediaQuery} from "@mui/material";
 import {Outlet} from "react-router-dom";
 import Navbar from "../../components/Navbar.jsx";
 import Sidebar from "../../components/Sidebar.jsx";
+import {getCurrentUser} from "aws-amplify/auth";
 
 const Layout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
@@ -12,6 +13,17 @@ const Layout = () => {
   const data = {
     name: "치타",
     occupation: "어드민",
+  }
+
+  currentAuthenticatedUser().then(r => console.log(r));
+
+  async function currentAuthenticatedUser() {
+    try {
+      let authUser = await getCurrentUser();
+      console.table(authUser)
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
