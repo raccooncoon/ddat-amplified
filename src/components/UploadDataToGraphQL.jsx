@@ -23,7 +23,7 @@ function UploadDataToGraphQL() {
 
       const content = JSON.parse(e.target.result);
       setLoading(true); // 파일 업로드가 시작되면 로딩 상태를 true로 설정합니다.
-      content.slice(0, 10).forEach(data => {
+      content.slice(0, 1000).forEach(data => {
         sendToGraphQL(data);
       });
     };

@@ -9,8 +9,6 @@ const UseCurrentAuthenticatedUser = () => {
     const fetchUserData = async () => {
       try {
         const userData = await getCurrentUser();
-
-
         setUser({
           userName: userData?.signInDetails?.loginId.split("@")[0],
           email: userData?.signInDetails?.loginId,

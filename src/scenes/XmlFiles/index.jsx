@@ -116,7 +116,7 @@ const XmlFiles = () => {
     {
       field: "context",
       headerName: "XML MAPPER CONTEXT",
-      flex: 4,
+      flex: 5,
       hide: !isNonMobile,
       headerAlign: "center",
       sortable: false,
@@ -127,7 +127,15 @@ const XmlFiles = () => {
       align: "center",
       headerAlign: "center",
       flex: 1,
-    }
+    },
+    {
+      field: "createdAt",
+      headerName: "CREATED AT",
+      align: "center",
+      headerAlign: "center",
+      hide: true,
+      flex: 2,
+    },
   ];
 
   return (
@@ -179,7 +187,7 @@ const XmlFiles = () => {
               }}
               onPageChange={(newPage) => setPage(newPage)}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-              checkboxSelection={true}
+              checkboxSelection={isNonMobile}
               onRowClick={(params) => {
                 console.log("params =>> ", params);
                 getXmlFile(params.row.id).then(r => console.log(r));
