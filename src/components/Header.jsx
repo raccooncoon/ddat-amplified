@@ -1,9 +1,8 @@
-import {Box, Typography, useMediaQuery, useTheme} from "@mui/material";
-import UploadDataToGraphQL from "./UploadDataToGraphQL.jsx";
+import {Box, Typography, useTheme} from "@mui/material";
+import UploadXmlFiles from "./UploadXmlFiles.jsx";
 import FlexBetween from "./FlexBetween.jsx";
 
 const Header = ({title, subtitle}) => {
-    const isNonMobile = useMediaQuery("(min-width: 600px)");
     const theme = useTheme();
     return (
         <FlexBetween>
@@ -20,7 +19,7 @@ const Header = ({title, subtitle}) => {
                     {subtitle}
                 </Typography>
             </Box>
-            <UploadDataToGraphQL/>
+            <UploadXmlFiles/>
         </FlexBetween>
     );
 };

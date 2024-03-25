@@ -1,13 +1,14 @@
 import {styled} from "@mui/system";
-import {Box, useTheme} from "@mui/material";
+import {Box, useMediaQuery, useTheme} from "@mui/material";
 import {CloudUploadOutlined} from "@mui/icons-material";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-function UploadDataToGraphQL() {
+function UploadXmlFiles() {
   const theme = useTheme();
   const [datas, setDatas] = useState([]);
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -24,26 +25,28 @@ function UploadDataToGraphQL() {
   };
 
   useEffect(() => {
-    async function fetchData() {
-      for (const data of datas) {
-        await axios.post('http://localhost:8080/api/xml_file/context/', {
-          moduleName: data.moduleName,
-          xmlid: data.xmlid,
-          namespace: data.namespace,
-          subtag: data.subtag,
-          fileName: data.fileName,
-          context: data.context,
-          urlCount: data.urlCount,
-          MethodModels: JSON.stringify(data.methodModels)
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    const fetchData = async () => {
+      for (let i = 0; i < datas.length; i++) {
+        const data = datas[i];
+        try {
+          await axios.post('http://localhost:8080/api/xml_file/contexts/', {
+            moduleName: data.moduleName,
+            xmlid: data.xmlid,
+            namespace: data.namespace,
+            subtag: data.subtag,
+            fileName: data.fileName,
+            context: data.context,
+            urlCount: data.urlCount,
+            MethodModels: JSON.stringify(data.methodModels)
+          });
+          console.log(`Data ${i + 1} uploaded successfully.`);
+        } catch (error) {
+          console.error(`Error uploading data ${i + 1}:`, error);
+        }
+        // 0.001초마다 데이터 전송
+        await new Promise(resolve => setTimeout(resolve, 1));
       }
-    }
+    };
     fetchData();
   }, [datas]);
 
@@ -66,7 +69,7 @@ function UploadDataToGraphQL() {
                    variant="contained"
                    tabIndex={-1}
                    startIcon={<CloudUploadOutlined/>}
-                   disabled={false}
+                   disabled={!isNonMobile}
                    sx={{
                      backgroundColor: theme.palette.secondary.light,
                      color: theme.palette.background.alt,
@@ -82,4 +85,4 @@ function UploadDataToGraphQL() {
   </Box>);
 }
 
-export default UploadDataToGraphQL;
+export default UploadXmlFiles;
