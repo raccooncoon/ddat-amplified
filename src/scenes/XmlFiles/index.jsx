@@ -40,7 +40,7 @@ const XmlFiles = () => {
       });
     }
     getXmlFiles()
-  }, [search, page, pageSize]);
+  }, [search, page, pageSize, subtags]);
 
   const columns = [
     {
@@ -141,6 +141,9 @@ const XmlFiles = () => {
               "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
                 color: `${theme.palette.secondary[200]} !important`,
               },
+              "& .MuiSvgIcon-root ": {
+                color: `${theme.palette.secondary[200]} !important`,
+              },
             }}
         >
           <DataGrid
@@ -159,13 +162,13 @@ const XmlFiles = () => {
               filterMode="client"
               onPageChange={(newPage) => setPage(newPage)}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-              //checkboxSelection={isNonMobile}
+              checkboxSelection={isNonMobile}
               onRowClick={(params) => {
                 console.log("params =>> ", params);
               }}
               components={{Toolbar: DataGridCustomToolbar}}
               componentsProps={{
-                toolbar: {searchInput, setSearchInput, setSearch},
+                toolbar: {searchInput, setSearchInput, setSearch, subtags, setSubtags},
               }}
           />
         </Box>
