@@ -37,7 +37,7 @@ function UploadXmlFiles() {
             fileName: data.fileName,
             context: data.context,
             urlCount: data.urlCount,
-            MethodModels: JSON.stringify(data.methodModels)
+            methodModels: JSON.stringify(data.methodModels)
           });
           console.log(`Data ${i + 1} uploaded successfully.`);
         } catch (error) {
