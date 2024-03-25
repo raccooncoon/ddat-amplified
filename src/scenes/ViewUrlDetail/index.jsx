@@ -43,21 +43,42 @@ const ViewUrlDetail = ({open, onClose, data}) => {
   }
 
   const columns = [{
+    field: 'moduleName',
+    headerName: '서비스명',
+    flex: 1,
+    align: "center",
+    headerAlign: "center",
+  }, {
+    field: 'namespace',
+    headerName: '네임스페이스',
+    flex: 1,
+    hide: true,
+    align: "center",
+    headerAlign: "center",
+  }, {
+    field: 'subtag',
+    headerName: 'CRUD',
+    flex: 1,
+    align: "center",
+    headerAlign: "center",
+  }, {
     field: 'className',
     headerName: '클래스명',
     flex: 1,
-    // align: "center",
-    // headerAlign: "center",
+    align: "center",
+    headerAlign: "center",
   }, {
     field: 'methodName',
     headerName: '메소드명',
     flex: 1,
-    // align: "center",
-    // headerAlign: "center",
+    align: "center",
+    headerAlign: "center",
   }, {
     field: 'url',
     headerName: 'URL',
-    flex: 2
+    flex: 2,
+    align: "center",
+    headerAlign: "center",
   }]
 
   return (
@@ -66,8 +87,15 @@ const ViewUrlDetail = ({open, onClose, data}) => {
           <Modal open={open} onClose={onClose}>
             <Box sx={style}>
               <DataGrid
-                  getRowId={() => randomId()}
-                  rows={data ? JSON.parse(data?.methodModels) : []}
+                  getRowId={(row) => row.id}
+                  rows={data ? JSON.parse(data?.methodModels).map(item => {
+                    item.id = randomId();
+                    item.moduleName = data.moduleName
+                    item.namespace = data.namespace
+                    item.subtag = data.subtag
+                    item.xmlid = data.xmlid
+                    return item;
+                  }): []}
                   columns={columns}
                   autoPageSize={false}
                   checkboxSelection={false}
