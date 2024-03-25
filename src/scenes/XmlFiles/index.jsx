@@ -1,9 +1,10 @@
-import {Box, useMediaQuery, useTheme} from "@mui/material";
+import {Box, Button, useMediaQuery, useTheme} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid";
 import Header from "../../components/Header.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import DataGridCustomToolbar from "../../components/DataGridCustomToolbar.jsx";
 import axios from "axios";
+import ViewXmlFilesDetail from "../ViewXmlFilesDetail/index.jsx";
 
 const XmlFiles = () => {
   const theme = useTheme();
@@ -15,7 +16,10 @@ const XmlFiles = () => {
   const [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [subtags, setSubtags] = useState(["update","insert","delete"]);
+  const [subtags, setSubtags] = useState(["update", "insert", "delete"]);
+  const [mapperDetailViewOpen, setMapperDetailViewOpen] = useState(false);
+  const [urlViewOpen, setUrlViewOpen] = useState(false);
+  const [selectData, setSelectData] = useState({});
 
   useEffect(() => {
 
@@ -109,12 +113,50 @@ const XmlFiles = () => {
       headerAlign: "center",
       flex: 1,
       filterable: false,
+    },
+    {
+      headerName: "Mapper 상세 보기",
+      field: "details",
+      align: "center",
+      headerAlign: "center",
+      flex: 1,
+      filterable: false,
+      sortable: false,
+      renderCell: (params) => {
+        return (
+            <Button color="primary" size="small"
+                    sx={{
+                      backgroundColor: theme.palette.primary.light,
+                      color: theme.palette.secondary.light,
+                      ":hover": {
+                        backgroundColor: theme.palette.primary.dark,
+                      }
+                    }}
+                    onClick={() => {
+                      console.log("params =>> ", params);
+                      handleMapperDetailViewOpen(params.row);
+                    }}>
+              {params.row.xmlid}
+            </Button>
+        );
+      },
     }
   ];
 
+  const handleClose = () => {
+    setMapperDetailViewOpen(false);
+    setUrlViewOpen(false);
+  }
+
+  const handleMapperDetailViewOpen = (data) => {
+    setMapperDetailViewOpen(true);
+    console.log("data =>> ", data);
+    setSelectData(data)
+  }
 
   return (
       <Box m={isNonMobile ? "1.5rem 2.5rem" : 0}>
+        <ViewXmlFilesDetail open={mapperDetailViewOpen} onClose={handleClose} data={selectData} />
         {isNonMobile && <Header title="XML FILES" subtitle="subtitle"/>}
         <Box
             height="80vh"
@@ -154,7 +196,7 @@ const XmlFiles = () => {
               rowCount={(data && data?.totalElements) || 0}
               rowsPerPageOptions={[20, 50, 100]}
               pagination
-              autoPageSize ={false}
+              autoPageSize={false}
               page={page}
               pageSize={pageSize}
               paginationMode="server"
@@ -163,18 +205,23 @@ const XmlFiles = () => {
               onPageChange={(newPage) => setPage(newPage)}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               checkboxSelection={isNonMobile}
-              onRowClick={(params) => {
-                console.log("params =>> ", params);
-              }}
+              // onRowClick={(params) => {
+              //   console.log("params =>> ", params);
+              // }}
               components={{Toolbar: DataGridCustomToolbar}}
               componentsProps={{
-                toolbar: {searchInput, setSearchInput, setSearch, subtags, setSubtags},
+                toolbar: {
+                  searchInput,
+                  setSearchInput,
+                  setSearch,
+                  subtags,
+                  setSubtags
+                },
               }}
           />
         </Box>
       </Box>
   )
-
 }
 
 export default XmlFiles;
