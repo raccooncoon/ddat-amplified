@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getCurrentUser} from "aws-amplify/auth";
+import {getCurrentUser, signOut} from "aws-amplify/auth";
 import md5 from "md5";
 
 const UseCurrentAuthenticatedUser = () => {
@@ -18,6 +18,9 @@ const UseCurrentAuthenticatedUser = () => {
         });
       } catch (error) {
         console.error('Error fetching user data:', error);
+        signOut().then(() => {
+          console.log('User signed out');
+        });
       }
     };
     fetchUserData()

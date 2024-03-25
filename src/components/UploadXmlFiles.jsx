@@ -4,11 +4,14 @@ import {CloudUploadOutlined} from "@mui/icons-material";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {useEffect, useState} from "react";
 import axios from "axios";
+import UseCurrentAuthenticatedUser
+  from "../hooks/useCurrentAuthenticatedUser.jsx";
 
 function UploadXmlFiles() {
   const theme = useTheme();
   const [datas, setDatas] = useState([]);
   const isNonMobile = useMediaQuery("(min-width: 600px)");
+  const { email } = UseCurrentAuthenticatedUser();
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -69,7 +72,7 @@ function UploadXmlFiles() {
                    variant="contained"
                    tabIndex={-1}
                    startIcon={<CloudUploadOutlined/>}
-                   disabled={!isNonMobile}
+                   disabled={!isNonMobile || email !== "kid1401@gmail.com"}
                    sx={{
                      backgroundColor: theme.palette.secondary.light,
                      color: theme.palette.background.alt,

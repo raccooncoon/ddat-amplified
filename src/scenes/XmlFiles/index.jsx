@@ -1,10 +1,11 @@
 import {Box, Button, useMediaQuery, useTheme} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid";
 import Header from "../../components/Header.jsx";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import DataGridCustomToolbar from "../../components/DataGridCustomToolbar.jsx";
 import axios from "axios";
 import ViewXmlFilesDetail from "../ViewXmlFilesDetail/index.jsx";
+import ViewUrlDetail from "../ViewUrlDetail/index.jsx";
 
 const XmlFiles = () => {
   const theme = useTheme();
@@ -113,6 +114,25 @@ const XmlFiles = () => {
       headerAlign: "center",
       flex: 1,
       filterable: false,
+      renderCell: (params) => {
+        return (
+            <Button color="primary" size="small"
+                    sx={{
+                      backgroundColor: theme.palette.primary.light,
+                      color: theme.palette.secondary.light,
+                      ":hover": {
+                        backgroundColor: theme.palette.primary.dark,
+                      }
+                    }}
+                    onClick={() => {
+                      console.log("params =>> ", params);
+                      (params.row);
+                      handleUrlViewOpen(params.row);
+                    }}>
+              {params.row.urlCount}
+            </Button>
+        );
+      },
     },
     {
       headerName: "Mapper 상세 보기",
@@ -154,9 +174,16 @@ const XmlFiles = () => {
     setSelectData(data)
   }
 
+  const handleUrlViewOpen = (data) => {
+    setUrlViewOpen(true);
+    console.log("data =>> ", data);
+    setSelectData(data)
+  }
+
   return (
       <Box m={isNonMobile ? "1.5rem 2.5rem" : 0}>
         <ViewXmlFilesDetail open={mapperDetailViewOpen} onClose={handleClose} data={selectData} />
+        <ViewUrlDetail open={urlViewOpen} onClose={handleClose} data={selectData} />
         {isNonMobile && <Header title="XML FILES" subtitle="subtitle"/>}
         <Box
             height="80vh"
