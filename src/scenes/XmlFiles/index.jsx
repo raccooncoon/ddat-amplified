@@ -22,9 +22,11 @@ const XmlFiles = () => {
   const [urlViewOpen, setUrlViewOpen] = useState(false);
   const [selectData, setSelectData] = useState({});
 
+  const baseUrl = import.meta.env.VITE_BASE_URL || "";
+
   useEffect(() => {
     const getXmlFiles = () => {
-      axios.get(`${import.meta.env.VITE_BASE_URL}/api/xml_file/context/`, {
+      axios.get(`${baseUrl}/api/xml_file/context/`, {
         params: {
           page: page,
           size: pageSize,
@@ -190,8 +192,10 @@ const XmlFiles = () => {
 
   return (
       <Box m={isNonMobile ? "1.5rem 2.5rem" : 0}>
-        <ViewXmlFilesDetail open={mapperDetailViewOpen} onClose={handleClose} data={selectData} />
-        <ViewUrlDetail open={urlViewOpen} onClose={handleClose} data={selectData} />
+        <ViewXmlFilesDetail open={mapperDetailViewOpen} onClose={handleClose}
+                            data={selectData}/>
+        <ViewUrlDetail open={urlViewOpen} onClose={handleClose}
+                       data={selectData}/>
         {isNonMobile && <Header title="XML FILES" subtitle="subtitle"/>}
         <Box
             height="80vh"

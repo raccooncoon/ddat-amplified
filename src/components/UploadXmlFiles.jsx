@@ -7,6 +7,8 @@ import axios from "axios";
 import UseCurrentAuthenticatedUser
   from "../hooks/useCurrentAuthenticatedUser.jsx";
 
+const baseUrl = import.meta.env.VITE_BASE_URL || "";
+
 function UploadXmlFiles() {
   const theme = useTheme();
   const [datas, setDatas] = useState([]);
@@ -32,7 +34,7 @@ function UploadXmlFiles() {
       for (let i = 0; i < datas.length; i++) {
         const data = datas[i];
         try {
-          await axios.post(`${import.meta.env.VITE_BASE_URL}/api/xml_file/contexts/`, {
+          await axios.post(`${baseUrl}/api/xml_file/contexts/`, {
             moduleName: data.moduleName,
             xmlid: data.xmlid,
             namespace: data.namespace,

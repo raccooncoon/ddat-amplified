@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-ddatamplified-dev-130840-unauthRole",
       "StackName": "amplify-ddatamplified-dev-130840",
       "StackId": "arn:aws:cloudformation:ap-northeast-2:851725584464:stack/amplify-ddatamplified-dev-130840/0ef23b40-d5ef-11ee-a6fb-02e011cf961c",
-      "AmplifyAppId": "duw0jlyeruvni"
+      "AmplifyAppId": "duw0jlyeruvni",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-ddatamplified-dev-130840-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
