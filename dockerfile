@@ -1,4 +1,4 @@
-:Aq# Use a lightweight Nginx image
+# Use a lightweight Nginx image
 FROM nginx:alpine
 
 # Set the working directory
