@@ -101,7 +101,7 @@ const XmlFiles = () => {
     },
     {
       field: "methodModels",
-      headerName: "URL DETAILS",
+      headerName: "URL LIST",
       flex: 3,
       hide: true,
       headerAlign: "center",
@@ -121,7 +121,7 @@ const XmlFiles = () => {
       filterable: false,
     },
     {
-      headerName: "URL LIST",
+      headerName: "URL COUNT",
       field: "urlCount",
       align: "center",
       headerAlign: "center",
