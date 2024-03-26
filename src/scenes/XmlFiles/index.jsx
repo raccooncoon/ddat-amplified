@@ -23,9 +23,8 @@ const XmlFiles = () => {
   const [selectData, setSelectData] = useState({});
 
   useEffect(() => {
-
     const getXmlFiles = () => {
-      axios.get(`http://localhost:8080/api/xml_file/context/`, {
+      axios.get(`${import.meta.env.VITE_BASE_URL}/api/xml_file/context/`, {
         params: {
           page: page,
           size: pageSize,
@@ -96,6 +95,15 @@ const XmlFiles = () => {
       field: "xmlid",
       flex: 1,
       headerAlign: "center",
+      filterable: false,
+    },
+    {
+      field: "methodModels",
+      headerName: "URL DETAILS",
+      flex: 3,
+      hide: true,
+      headerAlign: "center",
+      sortable: false,
       filterable: false,
     },
     {
