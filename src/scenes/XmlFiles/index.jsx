@@ -107,6 +107,9 @@ const XmlFiles = () => {
       headerAlign: "center",
       sortable: false,
       filterable: false,
+      renderCell: (params) => params.row && JSON.parse(
+          params.row.methodModels)?.map(
+          m => (m.url)).join(","),
     },
     {
       field: "context",
@@ -118,7 +121,7 @@ const XmlFiles = () => {
       filterable: false,
     },
     {
-      headerName: "URL COUNT",
+      headerName: "URL LIST",
       field: "urlCount",
       align: "center",
       headerAlign: "center",
