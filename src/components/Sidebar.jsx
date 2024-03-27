@@ -15,6 +15,7 @@ import {
 import {
   ChevronLeft,
   ChevronRightOutlined,
+  PieChartOutlined,
   TroubleshootOutlined,
 } from "@mui/icons-material";
 import {useLocation, useNavigate} from "react-router-dom";
@@ -30,6 +31,10 @@ const navItems = [
   {
     text: "XmlFiles",
     icon: <TroubleshootOutlined/>,
+  },
+  {
+    text: "TotalServices",
+    icon: <PieChartOutlined/>,
   },
 ];
 

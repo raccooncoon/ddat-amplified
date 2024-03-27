@@ -19,7 +19,7 @@ const Header = ({title, subtitle}) => {
                     {subtitle}
                 </Typography>
             </Box>
-            <UploadXmlFiles/>
+          {title === "XML FILES" && <UploadXmlFiles/>}
         </FlexBetween>
     );
 };
