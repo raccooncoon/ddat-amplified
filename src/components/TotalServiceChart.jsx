@@ -160,7 +160,7 @@ const TotalServiceChart = ({ isDashboard = false }) => {
       >
         {isLoading ? <CircularProgress/> :
         <Typography variant="h6">
-          {!isDashboard && "Total:"}{total}
+          {!isDashboard && "Total : "}{total}
         </Typography>
         }
       </Box>
