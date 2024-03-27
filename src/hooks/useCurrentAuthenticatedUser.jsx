@@ -14,7 +14,7 @@ const UseCurrentAuthenticatedUser = () => {
           userName: userData?.signInDetails?.loginId.split("@")[0],
           email: userData?.signInDetails?.loginId,
           url: `https://www.gravatar.com/avatar/${md5(
-              userData?.signInDetails?.loginId?.trim()?.toLowerCase())}?d=retro:`
+              userData?.signInDetails?.loginId?.trim()?.toLowerCase())}?d=retro`
         });
       } catch (error) {
         console.error('Error fetching user data:', error);
