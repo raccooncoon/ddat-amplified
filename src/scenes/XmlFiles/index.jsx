@@ -78,7 +78,7 @@ const XmlFiles = () => {
     {
       headerName: "NAME SPACE",
       field: "namespace",
-      flex: 2,
+      flex: 1,
       hide: !isNonMobile,
       headerAlign: "center",
       filterable: false,
