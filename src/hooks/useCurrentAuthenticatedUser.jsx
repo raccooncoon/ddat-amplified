@@ -20,6 +20,7 @@ const UseCurrentAuthenticatedUser = () => {
         console.error('Error fetching user data:', error);
         signOut().then(() => {
           console.log('User signed out');
+          window.location.reload();
         });
       }
     };

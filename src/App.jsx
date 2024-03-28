@@ -8,7 +8,7 @@ import XmlFiles from "./scenes/XmlFiles/index.jsx";
 import {withAuthenticator} from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import {QueryClient, QueryClientProvider} from "react-query";
-import TotalServices from "./scenes/breakdown/index.jsx";
+import TotalServices from "./scenes/TotalServices/index.jsx";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);

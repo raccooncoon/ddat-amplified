@@ -13,7 +13,8 @@ function UploadXmlFiles() {
   const theme = useTheme();
   const [datas, setDatas] = useState([]);
   const isNonMobile = useMediaQuery("(min-width: 600px)");
-  const { email } = UseCurrentAuthenticatedUser();
+  const {email} = UseCurrentAuthenticatedUser();
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -23,7 +24,16 @@ function UploadXmlFiles() {
       // 시작숫자 마지막숫자 입력 받기, 기본값 설정
       let start = parseInt(prompt('시작숫자를 입력하세요', 0));
       let end = parseInt(prompt('마지막숫자를 입력하세요', content.length));
-      setDatas(content.slice(start, end));
+      let moduleName = prompt('모듈 이름 입력', content[start].moduleName);
+      console.log("moduleName =>> ", moduleName);
+
+      let slice = content.slice(start, end);
+      console.log("slice =>> ", slice);
+
+      let resultData = slice.map(t => ({...t, moduleName: moduleName}));
+      console.log("resultData =>> ", resultData);
+
+      setDatas( resultData);
     };
     // 파일을 텍스트로 읽기
     reader.readAsText(file);
