@@ -30,7 +30,7 @@ function UploadXmlFiles() {
       let slice = content.slice(start, end);
       console.log("slice =>> ", slice);
 
-      let resultData = slice.map(t => ({...t, moduleName: moduleName}));
+      let resultData = slice.map(t => ({...t, moduleName: moduleName && "TEMP"}));
       console.log("resultData =>> ", resultData);
 
       setDatas( resultData);
