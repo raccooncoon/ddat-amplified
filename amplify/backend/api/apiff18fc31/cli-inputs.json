@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/lambda": {
+      "name": "/lambda",
+      "lambdaFunction": "ddatamplified2e4f6959",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

@@ -15,6 +15,15 @@
     "categories": {
       "auth": {
         "ddatamplified": {}
+      },
+      "function": {
+        "ddatamplified2e4f6959": {
+          "deploymentBucketName": "amplify-ddatamplified-dev-130840-deployment",
+          "s3Key": "amplify-builds/ddatamplified2e4f6959-552f74464a614b342f6c-build.zip"
+        }
+      },
+      "api": {
+        "apiff18fc31": {}
       }
     }
   }

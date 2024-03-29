@@ -1,5 +1,20 @@
 {
-  "api": {},
+  "api": {
+    "apiff18fc31": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "ddatamplified2e4f6959"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "ddatamplified": {
       "customAuth": false,
@@ -28,6 +43,31 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "ddatamplified2e4f6959": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_ddatamplified2e4f6959_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ddatamplified2e4f6959"
+        }
+      ]
+    },
+    "AMPLIFY_function_ddatamplified2e4f6959_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ddatamplified2e4f6959"
+        }
+      ]
     }
   }
 }

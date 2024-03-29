@@ -2,6 +2,8 @@ import {ResponsivePie} from "@nivo/pie";
 import {Box, CircularProgress, Typography, useTheme} from "@mui/material";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import UseCurrentAuthenticatedUser
+  from "../hooks/useCurrentAuthenticatedUser.jsx";
 
 const baseUrl = import.meta.env.VITE_BASE_URL || "";
 
@@ -10,6 +12,7 @@ const TotalServiceChart = ({isDashboard = false}) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const total = Object.values(data).reduce((acc, curr) => acc + curr, 0);
+  const {email} = UseCurrentAuthenticatedUser();
 
   useEffect(() => {
     const getXmlFiles = () => {
@@ -62,8 +65,12 @@ const TotalServiceChart = ({isDashboard = false}) => {
         <ResponsivePie
             data={formattedData}
             onClick={(none) => {
-              console.log("none =>> ", none)
-              if (confirm(`${none.id} 모듈 관련 정보 ${none.value} 개를 전부 삭제 하시 겠 습니까?`)) {
+              if (email !== "kid1401@gmail.com") {
+                return;
+              }
+
+              if (confirm(
+                  `${none.id} 모듈 관련 정보 ${none.value} 개를 전부 삭제 하시 겠 습니까?`)) {
                 setIsLoading(true)
                 axios.delete(`${baseUrl}/api/xml_file/contexts/${none.id}`)
                 .then(() => {
