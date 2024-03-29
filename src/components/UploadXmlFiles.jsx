@@ -1,13 +1,11 @@
 import {styled} from "@mui/system";
-import {Box, useMediaQuery, useTheme} from "@mui/material";
+import {useMediaQuery, useTheme} from "@mui/material";
 import {CloudUploadOutlined} from "@mui/icons-material";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {useEffect, useState} from "react";
 import UseCurrentAuthenticatedUser
   from "../hooks/useCurrentAuthenticatedUser.jsx";
 import {post} from 'aws-amplify/api';
-
-const baseUrl = import.meta.env.VITE_BASE_URL || "";
 
 function UploadXmlFiles() {
   const theme = useTheme();
@@ -83,7 +81,7 @@ function UploadXmlFiles() {
     width: 1,
   });
 
-  return (<Box>
+  return (
     <LoadingButton loading={false}
                    component="label"
                    role={undefined}
@@ -103,7 +101,7 @@ function UploadXmlFiles() {
       Upload file
       <VisuallyHiddenInput type="file" onChange={handleFileChange}/>
     </LoadingButton>
-  </Box>);
+  );
 }
 
 export default UploadXmlFiles;
