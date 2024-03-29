@@ -3,9 +3,9 @@ import {Box, useMediaQuery, useTheme} from "@mui/material";
 import {CloudUploadOutlined} from "@mui/icons-material";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {useEffect, useState} from "react";
-import axios from "axios";
 import UseCurrentAuthenticatedUser
   from "../hooks/useCurrentAuthenticatedUser.jsx";
+import {post} from 'aws-amplify/api';
 
 const baseUrl = import.meta.env.VITE_BASE_URL || "";
 
@@ -44,15 +44,21 @@ function UploadXmlFiles() {
       for (let i = 0; i < datas.length; i++) {
         const data = datas[i];
         try {
-          await axios.post(`${baseUrl}/api/xml_file/contexts/`, {
-            moduleName: data.moduleName,
-            xmlid: data.xmlid,
-            namespace: data.namespace,
-            subtag: data.subtag,
-            fileName: data.fileName,
-            context: data.context,
-            urlCount: data.urlCount,
-            methodModels: JSON.stringify(data.methodModels)
+          await post({
+            apiName: 'apiff18fc31',
+            path: '/api/xml_file/contexts/',
+            options: {
+              body: {
+                moduleName: data.moduleName,
+                xmlid: data.xmlid,
+                namespace: data.namespace,
+                subtag: data.subtag,
+                fileName: data.fileName,
+                context: data.context,
+                urlCount: data.urlCount,
+                methodModels: JSON.stringify(data.methodModels)
+              }
+            }
           });
           console.log(`Data ${i + 1} uploaded successfully.`);
         } catch (error) {

@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 import {useMemo} from "react";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {themeSettings} from "./theme.js";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./scenes/layout/index.jsx";
 import XmlFiles from "./scenes/XmlFiles/index.jsx";
 import {withAuthenticator} from '@aws-amplify/ui-react';
@@ -22,7 +22,7 @@ function App() {
               <CssBaseline/>
               <Routes>
                 <Route element={<Layout/>}>
-                  <Route path="/" element={<Navigate to="/xmlFiles" replace/>}/>
+                  <Route path="/" element={<XmlFiles/>}/>
                   <Route path="/xmlFiles" element={<XmlFiles/>}/>
                   <Route path="/TotalServices" element={<TotalServices />} />
                 </Route>

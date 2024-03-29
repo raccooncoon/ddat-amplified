@@ -1,9 +1,9 @@
 import {ResponsivePie} from "@nivo/pie";
 import {Box, CircularProgress, Typography, useTheme} from "@mui/material";
 import {useEffect, useState} from "react";
-import axios from "axios";
 import UseCurrentAuthenticatedUser
   from "../hooks/useCurrentAuthenticatedUser.jsx";
+import {del, get} from 'aws-amplify/api';
 
 const baseUrl = import.meta.env.VITE_BASE_URL || "";
 
@@ -16,8 +16,10 @@ const TotalServiceChart = ({isDashboard = false}) => {
 
   useEffect(() => {
     const getXmlFiles = () => {
-      axios.get(`${baseUrl}/api/xml_file/total_context/`, {})
-      .then((response) => {
+      get({
+        apiName: 'apiff18fc31',
+        path: '/api/xml_file/total_context/'
+      }).then((response) => {
         setData(response.data);
         setIsLoading(false)
       })
@@ -71,9 +73,10 @@ const TotalServiceChart = ({isDashboard = false}) => {
 
               if (confirm(
                   `${none.id} 모듈 관련 정보 ${none.value} 개를 전부 삭제 하시 겠 습니까?`)) {
-                setIsLoading(true)
-                axios.delete(`${baseUrl}/api/xml_file/contexts/${none.id}`)
-                .then(() => {
+                del({
+                  apiName: 'apiff18fc31',
+                  path: `/api/xml_file/contexts/${none.id}`,
+                }).then(() => {
                   setIsLoading(false);
                   window.location.reload();
                 })
