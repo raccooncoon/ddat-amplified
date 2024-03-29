@@ -94,7 +94,11 @@ const proxyToApi = async (event) => {
         console.log("response =>> ", response);
         return {
             statusCode: response.status,
-            headers: response.headers,
+            headers: {
+                "Access-Control-Allow-Headers" : "*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PUT,DELETE,PATCH"
+            },
             body: JSON.stringify(response.data)
         };
     } catch (error) {

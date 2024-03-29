@@ -5,8 +5,6 @@ import UseCurrentAuthenticatedUser
   from "../hooks/useCurrentAuthenticatedUser.jsx";
 import {del, get} from 'aws-amplify/api';
 
-const baseUrl = import.meta.env.VITE_BASE_URL || "";
-
 const TotalServiceChart = ({isDashboard = false}) => {
   const theme = useTheme();
   const [data, setData] = useState({});
@@ -15,17 +13,19 @@ const TotalServiceChart = ({isDashboard = false}) => {
   const {email} = UseCurrentAuthenticatedUser();
 
   useEffect(() => {
-    const getXmlFiles = () => {
-      get({
-        apiName: 'apiff18fc31',
-        path: '/api/xml_file/total_context/'
-      }).then((response) => {
-        setData(response.data);
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const getXmlFiles = async () => {
+      try {
+        let restOperation = await get({
+          apiName: 'apiff18fc31',
+          path: '/api/xml_file/total_context/'
+        })
+        const {body} = await restOperation.response;
+        const data = await body.json();
+        setIsLoading(false);
+        setData(data);
+      } catch (e) {
+        console.log('GET call failed: ', JSON.parse(e.response));
+      }
     }
     getXmlFiles()
   }, []);
@@ -66,25 +66,21 @@ const TotalServiceChart = ({isDashboard = false}) => {
       >
         <ResponsivePie
             data={formattedData}
-            onClick={(none) => {
+            onClick={async (none) => {
               if (email !== "kid1401@gmail.com") {
                 return;
               }
-
               if (confirm(
                   `${none.id} 모듈 관련 정보 ${none.value} 개를 전부 삭제 하시 겠 습니까?`)) {
-                del({
+                const restOperation = await del({
                   apiName: 'apiff18fc31',
                   path: `/api/xml_file/contexts/${none.id}`,
-                }).then(() => {
-                  setIsLoading(false);
-                  window.location.reload();
                 })
-                .catch((error) => {
-                  console.error(error);
-                  setIsLoading(false);
-                });
+                await restOperation.response;
+                setIsLoading(false);
+                window.location.reload();
               }
+              setIsLoading(false);
             }}
             theme={{
               axis: {

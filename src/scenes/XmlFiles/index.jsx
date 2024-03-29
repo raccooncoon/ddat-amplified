@@ -23,26 +23,27 @@ const XmlFiles = () => {
   const [selectData, setSelectData] = useState({});
 
   useEffect(() => {
-    const getXmlFiles = () => {
-      get({
-        apiName: 'apiff18fc31',
-        path: '/api/xml_file/context/',
-        options: {
-          queryParams:{
-            page: page,
-            size: pageSize,
-            search: search,
-            subtags: subtags.join(",")
+    const getXmlFiles = async () => {
+      try {
+        const restOperation = await get({
+          apiName: 'apiff18fc31',
+          path: '/api/xml_file/context/',
+          options: {
+            queryParams: {
+              page: page,
+              size: pageSize,
+              search: search,
+              subtags: subtags.join(",")
+            }
           }
-        }
-      }).then((response) => {
-        setData(response.data);
-        console.log(response);
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+        })
+        const {body} = await restOperation.response;
+        const data = await body.json();
+        setIsLoading(false);
+        setData(data);
+      } catch (e) {
+        console.log('GET call failed: ', JSON.parse(e.response));
+      }
     }
     getXmlFiles()
   }, [search, page, pageSize, subtags]);
