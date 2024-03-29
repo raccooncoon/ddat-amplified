@@ -1,8 +1,8 @@
 {
   "version": 1,
   "paths": {
-    "/lambda": {
-      "name": "/lambda",
+    "/": {
+      "name": "/",
       "lambdaFunction": "ddatamplified2e4f6959",
       "permissions": {
         "setting": "private",

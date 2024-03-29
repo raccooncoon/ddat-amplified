@@ -3,9 +3,9 @@ import {DataGrid} from "@mui/x-data-grid";
 import Header from "../../components/Header.jsx";
 import {useEffect, useState} from "react";
 import DataGridCustomToolbar from "../../components/DataGridCustomToolbar.jsx";
-import axios from "axios";
 import ViewXmlFilesDetail from "../ViewXmlFilesDetail/index.jsx";
 import ViewUrlDetail from "../ViewUrlDetail/index.jsx";
+import {get} from 'aws-amplify/api';
 
 const XmlFiles = () => {
   const theme = useTheme();
@@ -22,21 +22,18 @@ const XmlFiles = () => {
   const [urlViewOpen, setUrlViewOpen] = useState(false);
   const [selectData, setSelectData] = useState({});
 
-  const baseUrl = import.meta.env.VITE_BASE_URL || "";
-
   useEffect(() => {
     const getXmlFiles = () => {
-      axios.get(`${baseUrl}/api/xml_file/context/`, {
-        params: {
+      get({
+        apiName: 'apiff18fc31',
+        path: '/api/xml_file/context/',
+        queryParameters: {
           page: page,
           size: pageSize,
-          //sort: sort,
-          //filter: filter,
           search: search,
           subtags: subtags.join(",")
-        },
-      })
-      .then((response) => {
+        }
+      }).then((response) => {
         setData(response.data);
         console.log(response);
         setIsLoading(false)
