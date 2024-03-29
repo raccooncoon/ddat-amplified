@@ -34,6 +34,7 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
   const handleClose = () => setAnchorEl(null);
   const {email, userName, url} = UseCurrentAuthenticatedUser();
   const ec2Management = async () => {
+
     const restOperation = await post({
       apiName: 'apiff18fc31',
       path: '/lambda',
@@ -48,9 +49,13 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
 
     console.log('POST call succeeded');
     console.log(response);
+    alert(`EC2 is ${response.status}`);
+
+    if (email !== "kid1401@gmail.com") {
+      return;
+    }
 
     if (response.status === 'running') {
-      alert('EC2 is running');
       if (confirm('서버를 종료 하시겠습니까?')) {
         post({
           apiName: 'apiff18fc31',
@@ -63,7 +68,6 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
         });
       }
     } else {
-      alert(`EC2 is ${response.status}`);
       if (confirm('서버를 시작 하시겠습니까?')) {
         post({
           apiName: 'apiff18fc31',

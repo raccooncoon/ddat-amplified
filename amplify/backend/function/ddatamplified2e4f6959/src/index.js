@@ -6,20 +6,25 @@ const {
     StopInstancesCommand
 } = require("@aws-sdk/client-ec2");
 
+const axios = require('axios');
+const proxyUrl = 'http://43.201.90.176:58080/';
+const instanceId = 'i-04c874b08641ae186'
 const ec2Client = new EC2Client({ region: "ap-northeast-2" });
 
 async function executeEC2Command(instanceId, command) {
     return ec2Client.send(command);
 }
 
-const instanceId = 'i-04c874b08641ae186'
-
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 exports.handler = async (event) => {
-    // console.log("event =>> ", event);
-    if (event.httpMethod === "POST") {
+
+    const { path, httpMethod, headers, queryStringParameters, body } = event;
+
+    console.log("event =>> ", event);
+
+    if (path === '/lambda' && httpMethod === "POST") {
         const { action } = JSON.parse(event.body);
         try {
             let command;
@@ -71,6 +76,31 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             body: JSON.stringify({ message: "Hello from EC2 Management API" })
+        };
+    }
+    return await proxyToApi(event);
+};
+
+const proxyToApi = async (event) => {
+    try {
+        const { path, httpMethod, headers, queryStringParameters, body } = event;
+        const response = await axios({
+            method: httpMethod,
+            url: proxyUrl + path,
+            headers: headers,
+            params: queryStringParameters,
+            data: body
+        });
+        return {
+            statusCode: response.status,
+            headers: response.headers,
+            body: JSON.stringify(response.data)
+        };
+    } catch (error) {
+        return {
+            statusCode: error.response.status || 500,
+            headers: error.response.headers || {},
+            body: JSON.stringify({ error: error.response.data.message || 'Internal Server Error' })
         };
     }
 };
