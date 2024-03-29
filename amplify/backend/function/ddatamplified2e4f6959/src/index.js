@@ -7,8 +7,8 @@ const {
 } = require("@aws-sdk/client-ec2");
 
 const axios = require('axios');
-const proxyUrl = 'http://43.201.90.176:58080/';
-const instanceId = 'i-04c874b08641ae186'
+const proxyUrl = 'http://43.201.90.176:58080';
+const instanceId = 'i-04c874b08641ae186';
 const ec2Client = new EC2Client({ region: "ap-northeast-2" });
 
 async function executeEC2Command(instanceId, command) {
@@ -20,7 +20,7 @@ async function executeEC2Command(instanceId, command) {
  */
 exports.handler = async (event) => {
 
-    const { path, httpMethod, headers, queryStringParameters, body } = event;
+    const { path, httpMethod } = event;
 
     console.log("event =>> ", event);
 
@@ -72,16 +72,16 @@ exports.handler = async (event) => {
             console.error(`Error with instance ${instanceId}: ${error}`);
             throw new Error(`Error processing EC2 instance: ${error.message}`);
         }
-    } else if (event.httpMethod === "GET") {
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: "Hello from EC2 Management API" })
-        };
     }
+
     return await proxyToApi(event);
 };
 
 const proxyToApi = async (event) => {
+
+    console.log("event =>> ", event);
+    console.log("proxyUrl =>> ", proxyUrl);
+    
     try {
         const { path, httpMethod, headers, queryStringParameters, body } = event;
         const response = await axios({
@@ -91,17 +91,14 @@ const proxyToApi = async (event) => {
             params: queryStringParameters,
             data: body
         });
+        console.log("response =>> ", response);
         return {
             statusCode: response.status,
-            headers: {
-                "Access-Control-Allow-Headers": "*",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "OPTIONS,POST,GET,DELETE,PUT,PATCH"
-                , ...response.headers
-            },
+            headers: response.headers,
             body: JSON.stringify(response.data)
         };
     } catch (error) {
+        console.log("error =>> ", error);
         return {
             statusCode: error.response.status || 500,
             headers: error.response.headers || {},

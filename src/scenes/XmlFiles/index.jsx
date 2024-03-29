@@ -27,11 +27,13 @@ const XmlFiles = () => {
       get({
         apiName: 'apiff18fc31',
         path: '/api/xml_file/context/',
-        queryParameters: {
-          page: page,
-          size: pageSize,
-          search: search,
-          subtags: subtags.join(",")
+        options: {
+          queryParams:{
+            page: page,
+            size: pageSize,
+            search: search,
+            subtags: subtags.join(",")
+          }
         }
       }).then((response) => {
         setData(response.data);
