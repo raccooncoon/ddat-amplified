@@ -19,7 +19,7 @@
       "function": {
         "ddatamplified2e4f6959": {
           "deploymentBucketName": "amplify-ddatamplified-dev-130840-deployment",
-          "s3Key": "amplify-builds/ddatamplified2e4f6959-39462b66372b62763757-build.zip"
+          "s3Key": "amplify-builds/ddatamplified2e4f6959-4a346d41546a79562f32-build.zip"
         }
       },
       "api": {

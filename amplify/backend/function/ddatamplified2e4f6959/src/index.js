@@ -7,7 +7,8 @@ const {
 } = require("@aws-sdk/client-ec2");
 
 const axios = require('axios');
-const proxyUrl = 'http://43.201.90.176:58080';
+// const proxyUrl = 'http://43.201.90.176:58080';
+const proxyUrl = 'http://99.0.72.22:58080';
 const instanceId = 'i-04c874b08641ae186';
 const ec2Client = new EC2Client({ region: "ap-northeast-2" });
 
