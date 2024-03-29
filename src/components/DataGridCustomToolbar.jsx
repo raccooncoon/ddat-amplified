@@ -40,7 +40,8 @@ const DataGridCustomToolbar = ({
           )}
           <Box/>
           <FlexBetween>
-            <ToggleButtonGroup
+            {isNonMobile &&
+            (<ToggleButtonGroup
                 size="small"
                 value={subtags}
                 onChange={onChange}
@@ -61,7 +62,8 @@ const DataGridCustomToolbar = ({
               <ToggleButton value="delete" aria-label="bold">
                 delete
               </ToggleButton>
-            </ToggleButtonGroup>
+            </ToggleButtonGroup>)
+            }
             <TextField
                 label="Search..."
                 sx={{mb: "0.5rem", width: "15rem"}}
