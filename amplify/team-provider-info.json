@@ -19,11 +19,16 @@
       "function": {
         "ddatamplified2e4f6959": {
           "deploymentBucketName": "amplify-ddatamplified-dev-130840-deployment",
-          "s3Key": "amplify-builds/ddatamplified2e4f6959-4a346d41546a79562f32-build.zip"
+          "s3Key": "amplify-builds/ddatamplified2e4f6959-7237344d2f6745685331-build.zip"
+        },
+        "ddatamplified62e08ae9": {
+          "deploymentBucketName": "amplify-ddatamplified-dev-130840-deployment",
+          "s3Key": "amplify-builds/ddatamplified62e08ae9-722f6b41695934484933-build.zip"
         }
       },
       "api": {
-        "apiff18fc31": {}
+        "apiff18fc31": {},
+        "api01dd61b7": {}
       }
     }
   }

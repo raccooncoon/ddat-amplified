@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/ec2": {
+      "name": "/ec2",
+      "lambdaFunction": "ddatamplified62e08ae9",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

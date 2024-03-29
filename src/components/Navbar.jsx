@@ -35,10 +35,12 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
   const {email, userName, url} = UseCurrentAuthenticatedUser();
   const ec2Management = async () => {
 
+    console.log('POST call');
+
     try {
       const restOperation = await post({
-        apiName: 'apiff18fc31',
-        path: '/lambda',
+        apiName: 'api01dd61b7',
+        path: '/ec2',
         options: {
           body: {
             action: 'status'
@@ -59,8 +61,8 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
       if (response.status === 'running') {
         if (confirm('서버를 종료 하시겠습니까?')) {
           post({
-            apiName: 'apiff18fc31',
-            path: '/lambda',
+            apiName: 'api01dd61b7',
+            path: '/ec2',
             options: {
               body: {
                 action: 'stop'
@@ -71,8 +73,8 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
       } else {
         if (confirm('서버를 시작 하시겠습니까?')) {
           post({
-            apiName: 'apiff18fc31',
-            path: '/lambda',
+            apiName: 'api01dd61b7',
+            path: '/ec2',
             options: {
               body: {
                 action: 'start'

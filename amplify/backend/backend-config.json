@@ -1,5 +1,19 @@
 {
   "api": {
+    "api01dd61b7": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "ddatamplified62e08ae9"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "apiff18fc31": {
       "dependsOn": [
         {
@@ -50,6 +64,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "ddatamplified62e08ae9": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -66,6 +85,22 @@
         {
           "category": "function",
           "resourceName": "ddatamplified2e4f6959"
+        }
+      ]
+    },
+    "AMPLIFY_function_ddatamplified62e08ae9_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ddatamplified62e08ae9"
+        }
+      ]
+    },
+    "AMPLIFY_function_ddatamplified62e08ae9_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ddatamplified62e08ae9"
         }
       ]
     }
