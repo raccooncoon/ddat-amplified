@@ -20,7 +20,7 @@ function App() {
                 <CssBaseline/>
                 <Routes>
                   <Route element={<Layout/>}>
-                    <Route path="/" element={<XmlFiles/>}/>
+                    <Route path="/" element={<TotalServices/>}/>
                     <Route path="/TotalServices" element={<TotalServices/>}/>
                     <Route path="/xmlFiles" element={<XmlFiles/>}/>
                   </Route>
