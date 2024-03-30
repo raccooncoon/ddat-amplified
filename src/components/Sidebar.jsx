@@ -30,11 +30,11 @@ const navItems = [
     icon: null,
   },
   {
-    text: "TotalServices",
+    text: "totalservices",
     icon: <PieChartOutlined/>,
   },
   {
-    text: "XmlFiles",
+    text: "xmlfiles",
     icon: <TroubleshootOutlined/>,
   },
 ];

@@ -4,7 +4,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({baseUrl: "http://localhost:9000"}),
   reducerPath: "adminApi",
   tagTypes: [
-    "xmlFiles"
+    "xmlfiles"
   ],
   endpoints: (build) => ({
     getXmlFiles: build.query({

@@ -21,8 +21,8 @@ function App() {
                 <Routes>
                   <Route element={<Layout/>}>
                     <Route path="/" element={<TotalServices/>}/>
-                    <Route path="/TotalServices" element={<TotalServices/>}/>
-                    <Route path="/xmlFiles" element={<XmlFiles/>}/>
+                    <Route path="/totalservices" element={<TotalServices/>}/>
+                    <Route path="/xmlfiles" element={<XmlFiles/>}/>
                   </Route>
                 </Routes>
               </ThemeProvider>
