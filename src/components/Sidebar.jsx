@@ -26,16 +26,16 @@ import UseCurrentAuthenticatedUser
 
 const navItems = [
   {
-    text: "SR",
+    text: "Analysis",
     icon: null,
-  },
-  {
-    text: "XmlFiles",
-    icon: <TroubleshootOutlined/>,
   },
   {
     text: "TotalServices",
     icon: <PieChartOutlined/>,
+  },
+  {
+    text: "XmlFiles",
+    icon: <TroubleshootOutlined/>,
   },
 ];
 
