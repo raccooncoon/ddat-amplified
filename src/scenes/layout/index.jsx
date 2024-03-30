@@ -15,7 +15,13 @@ const Layout = () => {
             isSidebarOpen={isSidebarOpen}
             setIsSidebarOpen={setIsSidebarOpen}
         />
-        <Box flexGrow={1}>
+        <Box flexGrow={1} sx={{
+          backgroundColor: "background.default",
+          minHeight: "100vh",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}>
           <Navbar
               isSidebarOpen={isSidebarOpen}
               setIsSidebarOpen={setIsSidebarOpen}

@@ -34,9 +34,6 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
   const handleClose = () => setAnchorEl(null);
   const {email, userName, url} = UseCurrentAuthenticatedUser();
   const ec2Management = async () => {
-
-    console.log('POST call');
-
     try {
       const restOperation = await post({
         apiName: 'api01dd61b7',
