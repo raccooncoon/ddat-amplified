@@ -183,13 +183,11 @@ const XmlFiles = () => {
 
   const handleMapperDetailViewOpen = (data) => {
     setMapperDetailViewOpen(true);
-    console.log("data =>> ", data);
     setSelectData(data)
   }
 
   const handleUrlViewOpen = (data) => {
     setUrlViewOpen(true);
-    console.log("data =>> ", data);
     setSelectData(data)
   }
 
