@@ -13,6 +13,7 @@ import '@aws-amplify/ui-react/styles.css';
 import '@aws-amplify/ui-react/styles/reset.layer.css' // global CSS reset
 import '@aws-amplify/ui-react/styles/base.layer.css' // base styling needed for Amplify UI
 import '@aws-amplify/ui-react/styles/button.layer.css'
+import {Box} from "@mui/material";
 
 Amplify.configure(amplifyconfig);
 
@@ -60,23 +61,24 @@ const components = {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-      <div className="amplify-wrapper" style={{
+      <Box style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
         width: '100vw',
         background: '#121934',
+        paddingBottom: '6rem',
       }}>
         <Authenticator
             components={components}
             formFields={formFields}
             hideSignUp={true}
-            className="amplify-authenticator">
+        >
           <Provider store={store}>
             <App/>
           </Provider>
         </Authenticator>
-      </div>
+      </Box>
     </React.StrictMode>,
 );
