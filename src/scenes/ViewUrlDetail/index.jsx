@@ -88,14 +88,15 @@ const ViewUrlDetail = ({open, onClose, data}) => {
             <Box sx={style}>
               <DataGrid
                   getRowId={(row) => row.id}
-                  rows={data ? JSON.parse(data?.methodModels).map(item => {
+                  rows={(data && data?.methodModels) ? JSON.parse(data?.methodModels)
+                  .map(item => {
                     item.id = randomId();
                     item.moduleName = data.moduleName
                     item.namespace = data.namespace
                     item.subtag = data.subtag
                     item.xmlid = data.xmlid
                     return item;
-                  }): []}
+                  }) : []}
                   columns={columns}
                   autoPageSize={false}
                   checkboxSelection={false}
