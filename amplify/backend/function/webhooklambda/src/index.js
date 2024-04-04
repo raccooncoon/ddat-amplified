@@ -13,6 +13,7 @@ exports.handler = async (event) => {
 
   const data = {
     ...detail,
+    time: event?.time,
     region: event?.region,
   };
 
