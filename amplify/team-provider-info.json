@@ -27,7 +27,7 @@
         },
         "webhooklambda": {
           "deploymentBucketName": "amplify-ddatamplified-dev-130840-deployment",
-          "s3Key": "amplify-builds/webhooklambda-492f6651316f6a424159-build.zip"
+          "s3Key": "amplify-builds/webhooklambda-3962455a465a70563277-build.zip"
         }
       },
       "api": {
