@@ -1,8 +1,8 @@
 const axios= require('axios');
 //event.json 파일 읽어 오기
-const fs = require('fs');
-const event = JSON.parse(fs.readFileSync('event.json', 'utf8'));
-
+// const fs = require('fs');
+// const event = JSON.parse(fs.readFileSync('event.json', 'utf8'));
+// exports.handler(event)
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
@@ -25,5 +25,3 @@ exports.handler = async (event) => {
     body: JSON.stringify(axiosResponse.data)
   }
 };
-
-exports.handler(event)
