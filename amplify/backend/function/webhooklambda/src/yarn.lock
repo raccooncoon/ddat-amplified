@@ -47,16 +47,6 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-json-beautify@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/json-beautify/-/json-beautify-1.1.1.tgz"
-  integrity sha512-17j+Hk2lado0xqKtUcyAjK0AtoHnPSIgktWRsEXgdFQFG9UnaGw6CHa0J7xsvulxRpFl6CrkDFHght1p5ZJc4A==
-
-json-stringify-pretty-compact@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/json-stringify-pretty-compact/-/json-stringify-pretty-compact-4.0.0.tgz"
-  integrity sha512-3CNZ2DnrpByG9Nqj6Xo8vqbjT4F6N+tb4Gb28ESAZjYZ5yqvmc56J+/kuIwkaAMOyblTQhUW7PxMkUb8Q36N3Q==
-
 mime-db@1.52.0:
   version "1.52.0"
   resolved "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz"
@@ -68,11 +58,6 @@ mime-types@^2.1.12:
   integrity sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==
   dependencies:
     mime-db "1.52.0"
-
-pretty-print-json@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/pretty-print-json/-/pretty-print-json-3.0.0.tgz"
-  integrity sha512-1993HBv7RNqoPNgaajOK3RLm544t3jongECDFw6Y5faYiBeg2tg62jDT1EDmXRRDn296ykH49A8tphkQBHUSTA==
 
 proxy-from-env@^1.1.0:
   version "1.1.0"

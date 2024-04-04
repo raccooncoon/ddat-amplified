@@ -51,9 +51,9 @@ const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
       console.log(response);
       alert(`EC2 is ${response.status}`);
 
-      if (email !== "kid1401@gmail.com") {
-        return;
-      }
+      // if (email !== "kid1401@gmail.com") {
+      //   return;
+      // }
 
       if (response.status === 'running') {
         if (confirm('서버를 종료 하시겠습니까?')) {
