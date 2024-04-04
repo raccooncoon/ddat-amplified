@@ -69,6 +69,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "webhooklambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -101,6 +106,22 @@
         {
           "category": "function",
           "resourceName": "ddatamplified62e08ae9"
+        }
+      ]
+    },
+    "AMPLIFY_function_webhooklambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "webhooklambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_webhooklambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "webhooklambda"
         }
       ]
     }

@@ -24,6 +24,10 @@
         "ddatamplified62e08ae9": {
           "deploymentBucketName": "amplify-ddatamplified-dev-130840-deployment",
           "s3Key": "amplify-builds/ddatamplified62e08ae9-722f6b41695934484933-build.zip"
+        },
+        "webhooklambda": {
+          "deploymentBucketName": "amplify-ddatamplified-dev-130840-deployment",
+          "s3Key": "amplify-builds/webhooklambda-30653537644a7a346e64-build.zip"
         }
       },
       "api": {
